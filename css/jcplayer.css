@@ -1,0 +1,149 @@
+/*
+JCat Online Player StyleSheet
+*/
+@import url(https://fonts.googleapis.com/css?family=Cuprum&subset=latin,cyrillic);
+.jcp-player {
+  font-family: 'Cuprum', sans-serif;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #eee;
+  font-size: 28px;
+  border-top: 1px solid #ddd;
+}
+
+/* Player Icons */
+@font-face {
+  font-family: 'jcplayer';
+  src: url('../font/jcplayer.eot?65598148');
+  src: url('../font/jcplayer.eot?65598148#iefix') format('embedded-opentype'),
+       url('../font/jcplayer.woff2?65598148') format('woff2'),
+       url('../font/jcplayer.woff?65598148') format('woff'),
+       url('../font/jcplayer.ttf?65598148') format('truetype'),
+       url('../font/jcplayer.svg?65598148#jcplayer') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+ 
+ [class^="jcp-"]:before, [class*=" jcp-"]:before {
+  font-family: "jcplayer";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin: .1em;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+ 
+.jcp-play:before { content: '\e800'; } /* '' */
+.jcp-stop:before { content: '\e801'; } /* '' */
+.jcp-volume-off:before { content: '\e802'; } /* '' */
+.jcp-volume-down:before { content: '\e803'; } /* '' */
+.jcp-volume-up:before { content: '\e804'; } /* '' */
+.jcp-soundcloud:before { content: '\e805'; } /* '' */
+.jcp-lastfm:before { content: '\e806'; } /* '' */
+.jcp-youtube:before { content: '\e807'; } /* '' */
+.jcp-pause:before { content: '\e808'; } /* '' */
+.jcp-reload:before { content: '\e809'; } /* '' */
+/* Player Icons End */
+
+.jcp-duration {
+  display: inline-block;
+  width: 3em;
+  text-align: center;
+}
+
+/* Input Range Stile (Volume) */
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 0px;
+  width: 100px;
+  background-color: transparent;
+}
+input[type=range]:focus {outline: none;}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #000;
+  border-radius: 4px;
+  position: relative;
+  bottom: 5px;
+}
+input[type=range]::-webkit-slider-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 15px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -11px;
+}
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 8px;
+  cursor: pointer;
+  background: #000;
+  border-radius: 4px;
+}
+input[type=range]::-moz-range-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 30px;
+  width: 15px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+input[type=range]::-ms-fill-lower {
+  background: #2a6495;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-fill-upper {
+  background: #3071a9;
+  border: 0.2px solid #010101;
+  border-radius: 2.6px;
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+}
+input[type=range]::-ms-thumb {
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #ffffff;
+  cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {background: #3071a9;}
+input[type=range]:focus::-ms-fill-upper {background: #367ebd;}
+/* Input Range Stile (Volume) End */

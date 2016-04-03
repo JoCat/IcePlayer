@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/jcplayer.min.css">
+    <script type="text/javascript" src="jquery.min.js"></script>
+    <script type="text/javascript" src="js/jcplayer.min.js"></script>
+    <script type="text/javascript">
+      src = 'http://127.0.0.1:8000/live';       //Main Mount Adress
+      info = 'http://127.0.0.1:8000/info.xsl';  //Info file
+      tupd = 10;                                //Update time info (in sec)
+    </script>
+     <style>
+    @import url(http://fonts.googleapis.com/css?family=Cuprum:400,700&subset=latin,cyrillic);
+    body {
+      margin: 0px;
+      padding-bottom: 74px;
+    }
+    .content {
+        width: 800px;
+        margin: auto;
+        font-family: 'Cuprum', sans-serif;
+    }
+    h1, h2 {
+        text-align: center;
+        font-weight: normal;
+        margin-bottom: 0px;
+    }
+    h2 {margin-top:0px;}
+    blockquote {
+        background-color: #eee;
+        padding: 10px;
+        text-align: center;
+        color: blue;
+    }
+    pre {
+        text-align: left;
+        margin: 0px;
+    }
+    .link {
+        background-color: #eee;
+        color: blue;
+    }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <h1>JCat Online Player Demo Page</h1>
+      <h2>JCat Online Player Демонстрационная Страница</h2>
+      <p>Добро пожаловать на Демонстрационную страницу JCat Online Player.<br>
+        Спасибо, что вы выбрали мой плеер.<br>
+        Ниже будет приведено описание подключения и настройки плеера.
+      </p>
+      <h3>Подключение плеера</h2>
+      <p>Так как плеер работает на JQuery то нужно обязательно его подключить.
+        Вы можете использовать JQuery, который шёл вместе с плеером, и подключить его прописав в коде страницы:
+        <blockquote>&lt;script type=&quot;text/javascript&quot; src=&quot;jquery.min.js&quot;&gt;&lt;/script&gt;</blockquote>
+        либо не подключать, если он у вас уже подключен на сайте.
+      </p>
+      Также нужно подключить файлы плеера:
+      <blockquote>
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/jcplayer.min.css&quot;&gt;
+      </blockquote>
+        Если у вас главный поток вещания называется live, а фоновый nonstop, то используйте:
+      <blockquote>
+        &lt;script type=&quot;text/javascript&quot; src=&quot;js/jcplayer.min.js&quot;&gt;&lt;/script&gt;
+      </blockquote>
+        Иначе:
+      <blockquote>
+        &lt;script type=&quot;text/javascript&quot; src=&quot;js/jcplayer.js&quot;&gt;&lt;/script&gt;
+      </blockquote>
+        Предварительно поправив в этом файле в строке 90,91 и 93 названия потоков вещания.<br>
+        Например: (Название главного потока play, фонового shadow)
+        <blockquote>
+<pre>...
+if (data.play.title == '')<span style="color:green;">//First Mount (Main)</span>
+    $('#jcp-track').html(data.shadow.title);<span style="color:green;">//Second Mount (Fallback)</span>
+else
+    $('#jcp-track').html(data.play.title);<span style="color:green;">//First Mount (Main)</span>
+...</pre>
+      </blockquote>
+      <h3>Настройка</h2>
+      <p>
+        Настройка заключается всего в 2-х пунктах:<br>
+      <p>
+        1: Загрузить файл <span class="link">info.xsl</span> из папки <span class="link">to icecast2 web folder</span> в папку веб части сарвера Icecast.<br>
+        По умолчанию <span class="link">/usr/share/icecast2/web</span> для Debian (можно посмотреть в конфиге Icecast-a).<br>
+      </p>
+        2: Добавить после строк подключения плеера следующее:
+      </p>
+      <blockquote>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+    src = 'http://192.168.43.247:8000/live'; <span style="color:green;">//Основной поток вещания</span>
+    info = 'http://192.168.43.247:8000/info.xsl'; <span style="color:green;">//Информационный файл</span>
+    tupd = 10; <span style="color:green;">//Время обновление информации (в секундах)</span>
+&lt;/script&gt;</pre>
+      </blockquote>
+      <p>
+        Где пременная src - это ссылка на главный поток,<br>
+        пременная info - это ссылка на файл info.xsl на сервере вещания Icecast,<br>
+        а пременная tupd - это интервал времени обновления названия играющего трека в секундах.
+      </p>
+      <p>
+        В случае возникновения проблем при установке, настройке или работе скрипта, можете обращаться ко мне <a href="http://vk.com/johny_cat">в ВК</a>.
+        <br>На этом всё, приятного использования :3
+      </p>
+      <p>
+        <a href="https://github.com/JoCat/JCPlayer">JCat Online Player</a><br>
+        Copyright (c) 2016 <a href="http://vk.com/johny_cat">Andrew Molchanov</a>
+      </p>
+    </div>
+    <div id="jcp-player"></div>
+  </body>
+</html>
