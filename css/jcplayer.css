@@ -2,15 +2,33 @@
 JCat Online Player StyleSheet
 */
 @import url(https://fonts.googleapis.com/css?family=Cuprum&subset=latin,cyrillic);
-.jcp-player {
+#jcp-player {
   font-family: 'Cuprum', sans-serif;
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
   background-color: #eee;
   font-size: 28px;
   border-top: 1px solid #ddd;
+  color:black;
+  display:none;
+}
+#jcp-duration {
+  display: inline-block;
+  width: 3em;
+  text-align: center;
+}
+#jcp-track {
+  display: inline-block;
+}
+@media (max-width: 767px) {
+    #jcp-player {
+      font-size: 24px;
+    }
+    #jcp-volume, #jcp-volume-up {
+      display: none;
+    }
 }
 
 /* Player Icons */
@@ -26,7 +44,7 @@ JCat Online Player StyleSheet
   font-style: normal;
 }
  
- [class^="jcp-"]:before, [class*=" jcp-"]:before {
+ [id^="jcp-"]:before, [id*=" jcp-"]:before {
   font-family: "jcplayer";
   font-style: normal;
   font-weight: normal;
@@ -51,23 +69,17 @@ JCat Online Player StyleSheet
   -moz-osx-font-smoothing: grayscale;
 }
  
-.jcp-play:before { content: '\e800'; } /* '' */
-.jcp-stop:before { content: '\e801'; } /* '' */
-.jcp-volume-off:before { content: '\e802'; } /* '' */
-.jcp-volume-down:before { content: '\e803'; } /* '' */
-.jcp-volume-up:before { content: '\e804'; } /* '' */
-.jcp-soundcloud:before { content: '\e805'; } /* '' */
-.jcp-lastfm:before { content: '\e806'; } /* '' */
-.jcp-youtube:before { content: '\e807'; } /* '' */
-.jcp-pause:before { content: '\e808'; } /* '' */
-.jcp-reload:before { content: '\e809'; } /* '' */
+#jcp-play:before { content: '\e800'; } /* '' */
+#jcp-stop:before { content: '\e801'; } /* '' */
+#jcp-volume-off:before { content: '\e802'; } /* '' */
+#jcp-volume-down:before { content: '\e803'; } /* '' */
+#jcp-volume-up:before { content: '\e804'; } /* '' */
+#jcp-soundcloud:before { content: '\e805'; } /* '' */
+#jcp-lastfm:before { content: '\e806'; } /* '' */
+#jcp-youtube:before { content: '\e807'; } /* '' */
+#jcp-pause:before { content: '\e808'; } /* '' */
+#jcp-reload:before { content: '\e809'; } /* '' */
 /* Player Icons End */
-
-.jcp-duration {
-  display: inline-block;
-  width: 3em;
-  text-align: center;
-}
 
 /* Input Range Stile (Volume) */
 input[type=range] {
@@ -75,6 +87,7 @@ input[type=range] {
   margin: 0px;
   width: 100px;
   background-color: transparent;
+  display:inline-block;
 }
 input[type=range]:focus {outline: none;}
 input[type=range]::-webkit-slider-runnable-track {
