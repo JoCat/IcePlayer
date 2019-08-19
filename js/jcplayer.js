@@ -12,6 +12,7 @@ JCPlayer = {
     stream_mount: 'live', // Default mount
     info_link: 'current_track.xsl', // Info file
     time_update: 10, // Time to update information (in seconds)
+    style: 'fixed', // Player style
 
     // System Params
     audio_object: {},
@@ -26,6 +27,8 @@ JCPlayer = {
                 JCPlayer[parameter] = init_params[parameter];
             }
         }
+
+        $("#jcp-player").html('<div id="jcp-player" class="'+JCPlayer.style+'"><div id="player-el"><i id="jcp-play"></i><i id="jcp-stop"></i><input id="jcp-volume" type="range" min="0" max="100" value="50" step="1"></div><span id="jcp-track"></span></div>');
 
         // Init audio object
         JCPlayer.audio_object = new Audio();
@@ -55,7 +58,7 @@ JCPlayer = {
     },
 
     play: function() {
-        if (JCPlayer.player_stoped == true) {
+        if (JCPlayer.player_stoped === true) {
             JCPlayer.audio_object.setAttribute("src", JCPlayer.server_address + JCPlayer.stream_mount);
             JCPlayer.player_stoped = false;
         }
@@ -73,7 +76,7 @@ JCPlayer = {
         $('#jcp-pause').attr('id', 'jcp-play');
     },
     change_volume: function() {
-        JCPlayer.audio_object.volume = parseFloat(this.value / 10);
+        JCPlayer.audio_object.volume = parseFloat(this.value / 100);
     },
 
 };
