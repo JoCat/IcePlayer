@@ -1,100 +1,79 @@
 /*
- JCat Online Player v.1.2 - Player for Site (Icecast2 Online Radio)
- Copyright (c) 2016 Andrew Molchanov
+ JCat Online Player v.2.0.0_beta1 - Player for Site (Icecast2 Online Radio)
+ Copyright (c) 2016-2019 Andrew Molchanov
  https://github.com/JoCat/JCPlayer
 */
-$(document).ready(function(){
-    $("#jcp-player").html('<i id="jcp-play"></i><i id="jcp-stop"></i><i id="jcp-reload"></i><i id="jcp-volume-down"></i><input id="jcp-volume" type="range" min="0" max="10" value="5" step="0.1" /><i id="jcp-volume-up"></i><span id="jcp-duration"></span><span id="jcp-track"></span>');
-    var audio = new Audio();
-    var playReload = true;
-    audio.volume = 0.5;
 
-    $("#jcp-player").on('click', '#jcp-play', function() {
-        if (playReload == true) {
-            audio.setAttribute("src",src);
-            playReload = false;
-        }
-        audio.play();
-        $(this).attr('id', 'jcp-pause');
-    });
+// Player Object
+JCPlayer = {
+    // Params
+    server_address: 'http://127.0.0.1:8000/', // Default address:port
+    mounts_list: ['live', 'nonstop'], // Mount point list
+    stream_mount: 'live', // Default mount
+    info_link: 'current_track.xsl', // Info file
+    time_update: 10, // Time to update information (in seconds)
 
-    $("#jcp-player").on('click', '#jcp-pause', function() {
-        audio.pause();
-        $(this).attr('id', 'jcp-play');
-    });
+    // System Params
+    audio_object: {},
+    player_stoped: true,
 
-    $("#jcp-stop").click(function(){
-        audio.pause();
-        audio.setAttribute("src","");
-        playReload = true;
-        $('#jcp-pause').attr('id', 'jcp-play');
-    });
-
-    $("#jcp-reload").click(function(){
-        playReload = false;
-        audio.pause();
-        audio.setAttribute("src",src);
-        audio.play();
-        $("#jcp-play").attr('id', 'jcp-pause');
-    });
-
-    $("#jcp-volume").mousemove(function(){
-        audio.volume = parseFloat(this.value / 10);
-     });
-    $("#jcp-volume").click(function(){
-        $("#jcp-volume-off").attr('id', 'jcp-volume-down');
-    });
-
-    $("#jcp-player").on('click', '#jcp-volume-off', function() {
-        audio.volume = oldVolume;
-        $(this).attr('id', 'jcp-volume-down');
-        $("#jcp-volume").val(oldVolume * 10);
-    });
-
-    $("#jcp-player").on('click', '#jcp-volume-down', function() {
-        oldVolume = audio.volume;
-        audio.volume = 0;
-        $(this).attr('id', 'jcp-volume-off');
-        $("#jcp-volume").val(0);
-    });
-
-    $("#jcp-volume-up").click(function(){
-        audio.volume = 1;
-        $("#jcp-volume-off").attr('id', 'jcp-volume-down');
-        $("#jcp-volume").val(10);
-    });
-
-    setInterval(function ()	{
-        s = String(parseInt(audio.currentTime % 60));
-        m = String(parseInt((audio.currentTime / 60) % 60));
-        h = parseInt(audio.currentTime / 3600);
-        if (s.length <= 1) {s = '0'+s};
-        if (m.length <= 1) {m = '0'+m};
-        if (h >= 1) {$("#jcp-duration").html(h+':'+m+':'+s)}
-        else {$("#jcp-duration").html(m+':'+s)}
-    },1000);
-
-    timer = setTimeout(function showinfo(){
-        $.ajax({
-          dataType: 'jsonp',
-          jsonp: 'callback',
-          jsonpCallback: 'info',
-          url: info,
-          success: function(d){
-            try {
-                if (d.live.title == '') {einfo = true} else einfo = false;//First Mount (Main)
-            } catch(e) {
-                einfo = true;
+    // Functions
+    init: function (init_params) {
+        // Setting transmitted parameters
+        if (typeof init_params == 'object') {
+            init_params_list = Object.keys(init_params);
+            for (let parameter of init_params_list) {
+                JCPlayer[parameter] = init_params[parameter];
             }
-            if (einfo == true)
-                $('#jcp-track').html(d.nonstop.title);//Second Mount (Fallback)
-            else
-                $('#jcp-track').html(d.live.title);//First Mount (Main)
-          },
-          error: function(){
-              $("#jcp-track").html('Ошибка загрузки! Возможно радио сейчас не работает...');
-          }
-        });
-        timer = setTimeout(showinfo,tupd*1000);
-    },tupd*1000);
-});
+        }
+
+        // Init audio object
+        JCPlayer.audio_object = new Audio();
+        JCPlayer.audio_object.volume = 0.5;
+
+        // Events
+        $("#jcp-player").on('click', '#jcp-play', JCPlayer.play);
+        $("#jcp-player").on('click', '#jcp-pause', JCPlayer.pause);
+        $("#jcp-player").on('click', '#jcp-stop', JCPlayer.stop);
+        $("#jcp-player").on('mousemove', '#jcp-volume', JCPlayer.change_volume);
+
+        timer = setTimeout(function showinfo() {
+            $.ajax({
+                dataType: 'json',
+                url: JCPlayer.server_address + JCPlayer.info_link,
+                success: function(d) {
+                    for (let mount_name of JCPlayer.mounts_list) {
+                        if (d[mount_name]) {
+                            $("#jcp-track").html(d[mount_name].title);
+                            break;
+                        }
+                    }
+                }
+            });
+            timer = setTimeout(showinfo,JCPlayer.time_update*1000);
+        },JCPlayer.time_update*1000);
+    },
+
+    play: function() {
+        if (JCPlayer.player_stoped == true) {
+            JCPlayer.audio_object.setAttribute("src", JCPlayer.server_address + JCPlayer.stream_mount);
+            JCPlayer.player_stoped = false;
+        }
+        JCPlayer.audio_object.play();
+        $(this).attr('id', 'jcp-pause');
+    },
+    pause: function() {
+        JCPlayer.audio_object.pause();
+        $(this).attr('id', 'jcp-play');
+    },
+    stop: function() {
+        JCPlayer.audio_object.pause();
+        JCPlayer.audio_object.setAttribute("src", "");
+        JCPlayer.player_stoped = true;
+        $('#jcp-pause').attr('id', 'jcp-play');
+    },
+    change_volume: function() {
+        JCPlayer.audio_object.volume = parseFloat(this.value / 10);
+    },
+
+};
