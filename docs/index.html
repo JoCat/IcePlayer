@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>IcePlayer.js - Плеер для сайта</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=Exo+2:400,700&display=swap&subset=cyrillic);
+    body {
+        font-family: 'Exo 2', sans-serif;
+    }
+    header {
+        background-color: #0af;
+        color: #fff;
+        padding: .5em;
+        margin-bottom: 2em;
+    }
+    blockquote {
+        background-color: #f5f5f5;
+        padding: 10px 15px;
+    }
+    pre {
+        margin: 0px;
+    }
+    pre, code {
+        font-weight: bold;
+    }
+    h2 {
+        margin-top: 3rem;
+    }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container text-center">
+        <h1>IcePlayer <small>– Плеер для сайта</small></h1>
+      </div>
+    </header>
+    <div class="container">
+      <p>Добро пожаловать на страницу IcePlayer.<br>
+        IcePlayer – скрипт плеера для сайта интенет-радио на платформе Icecast2.<br>
+        Ниже будет приведено описание установки, подключения и настройки скрипта.
+      </p>
+      <h2>Установка скрипта</h2>
+      <p>Для начала вам нужно:</p>
+      <p>1. Загрузить скрипт на сайт:</p>
+      <blockquote>
+        <code>iceplayer.min.js</code> или <code>iceplayer.js</code> из папки <code>js</code>
+      </blockquote>
+      <p>2. Загрузить файл <code>current_track.xsl</code> из папки <code>to icecast2 web folder</code> в папку веб части сарвера Icecast.</p>
+      <blockquote>
+        По умолчанию <code>/usr/share/icecast2/web</code> для Debian (можно посмотреть в конфиге Icecast-a).
+      </blockquote>
+      <p>Также если вы используете скрипт <a target="_blank" href="https://github.com/JoCat/IceInfo">IceInfo</a>, вы можете использовать уже загруженый файл <code>info.xsl</code>.</p>
+      <h2>Подключение и настройка скрипта</h2>
+      <p>Подключить скрипт:</p>
+      <blockquote>
+        <code>&lt;script type=&quot;text/javascript&quot; src=&quot;js/iceplayer.min.js&quot;&gt;&lt;/script&gt;</code>
+      </blockquote>
+      <p>Вся настройка заключается в 2-х пунктах:</p>
+      <p>1. Добавить после строк подключения плеера следующее:</p>
+      <blockquote>
+<pre>&lt;script type=&quot;text/javascript&quot;&gt;
+    IcePlayer.init({
+        server_address: '<span style="color:#e83e8c;">*server address*</span>'
+    });
+&lt;/script&gt;</pre>
+      </blockquote>
+      <p>Указав вместо <code>*server address*</code> свой адрес сервера, например:</p>
+      <blockquote>
+        <code>server_address: '<span style="color:#e83e8c;">http://127.0.0.1:8000/</span>'</code>
+      </blockquote>
+      <p>А также указав дополнительные параметры, если требуется, список которых приведён ниже.</p>
+      <p>2. Добавить в код вашего сайта, в нужное вам место:
+      <blockquote>
+        <code>&lt;div id=&quot;ice-player&quot;&gt;&lt;/div&gt;</code>
+      </blockquote>
+      <h2>Параметры скрипта</h2>
+      <p>
+        <code>server_address</code><br>
+        По умолчанию: <code>'http://127.0.0.1:8000/'</code><br>
+        Адрес сервера Icecast
+      </p>
+      <p>
+        <code>stream_mount</code><br>
+        По умолчанию: <code>'live'</code><br>
+        Mount поинт с которого берётся аудио поток 
+      </p>
+      <p>
+        <code>style</code><br>
+        По умолчанию: <code>'fixed'</code><br>
+        Стиль плеера, также имеется стиль <code>'inline'</code>
+      </p>
+      <p>
+        <code>mounts_list</code><br>
+        По умолчанию: <code>['live', 'nonstop']</code><br>
+        Список mount поинтов с которых берётся информация в порядке убывания (первый приоритетнее всех последующих) 
+      </p>
+      <p>
+        <code>info_link</code><br>
+        По умолчанию: <code>'current_track.xsl'</code><br>
+        Название информационного файла<br>
+        Также поддерживается файл <code>'info.xsl'</code> со скрипта <a target="_blank" href="https://github.com/JoCat/IceInfo">IceInfo</a>
+      </p>
+      <p>
+        <code>time_update</code><br>
+        По умолчанию: <code>10</code><br>
+        Время периода обновления информации в секундах
+      </p>
+    </div>
+    <footer class="container mt-5">
+     <p>
+        В случае возникновения проблем при установке, настройке или работе скрипта, можете обращаться ко мне <a href="https://vk.com/johny_cat">в ВК</a>.
+        <br>На этом всё, приятного использования :3
+      </p>
+      <p>
+        <a href="https://github.com/JoCat/IcePlayer">IcePlayer</a><br>
+        Copyright (c) 2016-2020 <a href="https://jocat.ru/">Andrew Molchanov</a>
+      </p>
+    </footer>
+  </body>
+</html>
