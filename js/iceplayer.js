@@ -63,7 +63,7 @@ class IcePlayer {
 
     play() {
         if (this.current_state === this.STOPPED)
-            this.audio_object.setAttribute('src', this.server_address + this.stream_mount);
+            this.audio_object.setAttribute('src', this.server_address + this.stream_mount + '?cache-ignore=' + Date.now());
         this.audio_object.play();
     }
     pause() {
