@@ -1,14 +1,14 @@
 /*
- IcePlayer v.2.0.0 - Player for Site (Icecast2 Online Radio)
+ IcePlayer v.3.0.0_dev - Player for Site (Icecast2 Online Radio)
  Copyright (c) 2016-2020 Andrew Molchanov
  https://github.com/JoCat/IcePlayer
 */
 
-#ice-player.inline {
+.ice-player.inline {
     padding: 10px;
 }
 
-#ice-player.fixed {
+.ice-player.fixed {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -20,26 +20,26 @@
     color:black;
 }
 
-#ice-player.fixed #ice-track {
+.ice-player.fixed .ice-track {
     margin-left: .25em;;
 }
 
-#ice-player-el {
+.ice-player-el {
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-[id*="ice-"] {
+[class*="ice-"] {
     display: inline-flex;
 }
 
-#ice-pause {
+.ice-pause {
     display: none;
 }
 
 @media (max-width: 767px) {
-    #ice-player {
+    .ice-player {
         font-size: 14px;
     }
 }
@@ -57,7 +57,7 @@
     font-style: normal;
 }
 
-[id^="ice-"]:before, [id*=" ice-"]:before {
+[class^="ice-"]:before, [class*=" ice-"]:before {
     font-family: "iceplayer";
     font-style: normal;
     font-weight: normal;
@@ -79,9 +79,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-#ice-pause:before { content: '\f00e'; } /* '' */
-#ice-play:before { content: '\f00f'; } /* '' */
-#ice-stop:before { content: '\f080'; } /* '' */
+.ice-pause:before { content: '\f00e'; } /* '' */
+.ice-play:before { content: '\f00f'; } /* '' */
+.ice-stop:before { content: '\f080'; } /* '' */
 /* Player Icons End */
 
 /* Input Range Stile (Volume) */
