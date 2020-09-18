@@ -62,7 +62,7 @@
       <p>1. Добавить после строк подключения плеера следующее:</p>
       <blockquote>
 <pre>&lt;script type=&quot;text/javascript&quot;&gt;
-    IcePlayer.init({
+    new IcePlayer('#ice-player', {
         server_address: '<span style="color:#e83e8c;">*server address*</span>'
     });
 &lt;/script&gt;</pre>
@@ -93,6 +93,20 @@
         Стиль плеера, также имеется стиль <code>'inline'</code>
       </p>
       <p>
+        <code>template</code><br>
+        По умолчанию: <code>'fixed'</code><br>
+        Шаблон плеера
+        <blockquote>
+<pre>&lt;div class=&quot;ice-player-el&quot;&gt;
+    &lt;i class=&quot;ice-play&quot;&gt;&lt;/i&gt;
+    &lt;i class=&quot;ice-pause&quot;&gt;&lt;/i&gt;
+    &lt;i class=&quot;ice-stop&quot;&gt;&lt;/i&gt;
+    &lt;input class=&quot;ice-volume&quot; type=&quot;range&quot; min=&quot;0&quot; max=&quot;100&quot; value=&quot;50&quot; step=&quot;1&quot;&gt;
+    &lt;span class=&quot;ice-track&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;</pre>
+        </blockquote>
+      </p>
+      <p>
         <code>mounts_list</code><br>
         По умолчанию: <code>['live', 'nonstop']</code><br>
         Список mount поинтов с которых берётся информация в порядке убывания (первый приоритетнее всех последующих) 
@@ -111,7 +125,7 @@
     </div>
     <footer class="container mt-5">
       <p>
-        В случае возникновения проблем при установке, настройке или работе скрипта, можете обращаться ко мне <a href="https://vk.com/johny_cat">в ВК</a>.
+        В случае возникновения проблем при установке, настройке или работе скрипта, можете обращаться ко мне в <a href="https://vk.com/johny_cat">ВК</a>.
         <br>На этом всё, приятного использования :3
       </p>
       <p>

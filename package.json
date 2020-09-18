@@ -1,0 +1,25 @@
+{
+  "name": "iceplayer",
+  "version": "3.0.0",
+  "description": "IcePlayer - Player for Site (Icecast2 Online Radio)",
+  "browser": "./js/iceplayer.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JoCat/IcePlayer.git"
+  },
+  "keywords": [
+    "html5",
+    "audio",
+    "player",
+    "icecast"
+  ],
+  "author": "Andrew Molchanov <mr.catmanrus@gmail.com> (https://jocat.ru/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JoCat/IcePlayer/issues"
+  },
+  "homepage": "https://github.com/JoCat/IcePlayer#readme"
+}

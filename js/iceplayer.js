@@ -1,5 +1,5 @@
 /*
- IcePlayer v.3.0.0_dev - Player for Site (Icecast2 Online Radio)
+ IcePlayer v.3.0.0 - Player for Site (Icecast2 Online Radio)
  Copyright (c) 2016-2020 Andrew Molchanov
  https://github.com/JoCat/IcePlayer
 */
@@ -7,31 +7,28 @@
 "use strict";
 
 class IcePlayer {
-    // Player Params
-    server_address = 'http://127.0.0.1:8000/' // Default address:port
-    stream_mount = 'live' // Default mount
-    style = 'fixed' // Player style (fixed or inline)
-    template = '<div class="ice-player-el"><i class="ice-play"></i><i class="ice-pause"></i><i class="ice-stop"></i><input class="ice-volume" type="range" min="0" max="100" value="50" step="1"><span class="ice-track"></span></div>'
-    // Informer Params
-    mounts_list = ['live', 'nonstop'] // Mount point list
-    info_link = 'current_track.xsl' // Info file
-    time_update = 10 // Time to update information (in seconds)
-
-    // System Params
-    audio_object = new Audio()
-    current_state = 0
-    player_el
-
-    //State const
-    STOPPED = 0
-    PLAYING = 1
-    PAUSED  = 2
-
-    // Functions
     constructor(el, init_params) {
         if (el.length === 0) throw new Error('Player element not found!');
-        this.player_el = document.querySelector(el);
-        this.audio_object.volume = 0.5;
+
+        // Player Params
+        this.server_address = 'http://127.0.0.1:8000/' // Default address:port
+        this.stream_mount = 'live' // Default mount
+        this.style = 'fixed' // Player style (fixed or inline)
+        this.template = '<div class="ice-player-el"><i class="ice-play"></i><i class="ice-pause"></i><i class="ice-stop"></i><input class="ice-volume" type="range" min="0" max="100" value="50" step="1"><span class="ice-track"></span></div>'
+        // Informer Params
+        this.mounts_list = ['live', 'nonstop'] // Mount point list
+        this.info_link = 'current_track.xsl' // Info file
+        this.time_update = 10 // Time to update information (in seconds)
+
+        // System Params
+        this.audio_object = new Audio()
+        this.audio_object.volume = 0.5
+        this.current_state = 0
+
+        //State const
+        this.STOPPED = 0
+        this.PLAYING = 1
+        this.PAUSED  = 2
 
         // Setting transmitted parameters
         if (typeof init_params === 'object') {
@@ -41,6 +38,7 @@ class IcePlayer {
             }
         }
 
+        this.player_el = document.querySelector(el);
         this.player_el.classList.add('ice-player', this.style);
         this.set_content(this.player_el, this.template);
 
@@ -62,6 +60,7 @@ class IcePlayer {
         this.showinfo();
     }
 
+    // Functions
     play() {
         if (this.current_state === this.STOPPED)
             this.audio_object.setAttribute('src', this.server_address + this.stream_mount + '?cache-ignore=' + Date.now());

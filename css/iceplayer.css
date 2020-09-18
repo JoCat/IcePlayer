@@ -1,5 +1,5 @@
 /*
- IcePlayer v.3.0.0_dev - Player for Site (Icecast2 Online Radio)
+ IcePlayer v.3.0.0 - Player for Site (Icecast2 Online Radio)
  Copyright (c) 2016-2020 Andrew Molchanov
  https://github.com/JoCat/IcePlayer
 */
@@ -10,7 +10,7 @@
     --ice-player-border-color: #cecece;
     --iceplayer-track-height: 4px;
     --iceplayer-track-border-radius: calc(var(--iceplayer-track-height) / 2);
-    --iceplayer-thumb-size: calc(var(--iceplayer-track-height) * 4);
+    --iceplayer-thumb-size: 16px;
     --iceplayer-thumb-border: 2px solid var(--ice-player-secondary-color);
 }
 
@@ -85,7 +85,7 @@
 .ice-stop:before { content: '\f080'; } /* '' */
 /* Player Icons End */
 
-/* Input Range Stile (Volume) */
+/* Input Range Style (Volume) */
 .ice-volume {
     width: 100px;
     margin: 0 .25em;
@@ -136,4 +136,4 @@
 .ice-player.inline .ice-volume::-moz-range-thumb {
     border-color: #fff;
 }
-/* Input Range Stile (Volume) End  */
+/* Input Range Style (Volume) End  */
