@@ -4,8 +4,20 @@
  https://github.com/JoCat/IcePlayer
 */
 
-.ice-player.inline {
+:root {
+    --ice-player-primary-color: #21262a;
+    --ice-player-secondary-color: #f2f2f2;
+    --ice-player-border-color: #cecece;
+    --iceplayer-track-height: 4px;
+    --iceplayer-track-border-radius: calc(var(--iceplayer-track-height) / 2);
+    --iceplayer-thumb-size: calc(var(--iceplayer-track-height) * 4);
+    --iceplayer-thumb-border: 2px solid var(--ice-player-secondary-color);
+}
+
+.ice-player {
     padding: 10px;
+    font-size: 18px;
+    color: var(--ice-player-primary-color);
 }
 
 .ice-player.fixed {
@@ -13,15 +25,12 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 10px;
-    background-color: #eee;
-    font-size: 18px;
-    border-top: 1px solid #ddd;
-    color:black;
+    background-color: var(--ice-player-secondary-color);
+    border-top: 1px solid var(--ice-player-border-color);
 }
 
 .ice-player.fixed .ice-track {
-    margin-left: .25em;;
+    margin-left: .25em;
 }
 
 .ice-player-el {
@@ -36,12 +45,6 @@
 
 .ice-pause {
     display: none;
-}
-
-@media (max-width: 767px) {
-    .ice-player {
-        font-size: 14px;
-    }
 }
 
 /* Player Icons */
@@ -61,8 +64,6 @@
     font-family: "iceplayer";
     font-style: normal;
     font-weight: normal;
-    speak: none;
-    display: inline-block;
     text-decoration: inherit;
     width: 1em;
     margin: 0 .25em;
@@ -85,72 +86,54 @@
 /* Player Icons End */
 
 /* Input Range Stile (Volume) */
-input[type=range] {
-    -webkit-appearance: none;
-    margin: 0 .25em;;
+.ice-volume {
     width: 100px;
-    font-size: inherit;
+    margin: 0 .25em;
+    -webkit-appearance: none;
     background-color: transparent;
 }
-input[type=range]:focus {outline: none;}
-input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
-    height: calc(4px + 1 * (1em / 8));
+
+.ice-volume:focus {outline: none;}
+
+.ice-volume::-webkit-slider-runnable-track {
     cursor: pointer;
-    background: #000;
-    border-radius: calc((4px + 1 * (1em / 8)) / 2);
-    position: relative;
-    bottom: calc(50% - (4px + 1 * (1em / 8)) / 2);
+    height: var(--iceplayer-track-height);
+    background: var(--ice-player-primary-color);
+    border-radius: var(--iceplayer-track-border-radius);
 }
-input[type=range]::-webkit-slider-thumb {
-    box-shadow: -1px 1px 2px rgba(0, 0, 0, .25), 1px -1px 2px rgba(0, 0, 0, .25);
-    height: calc(8px + 2 * (1em / 8));
-    width: calc(8px + 2 * (1em / 8));
+.ice-volume::-webkit-slider-thumb {
+    cursor: pointer;
     border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
     -webkit-appearance: none;
-    margin-top: calc((4px + 1 * (1em / 8)) / -2);
+    width: var(--iceplayer-thumb-size);
+    height: var(--iceplayer-thumb-size);
+    background: var(--ice-player-primary-color);
+    margin-top: calc(var(--iceplayer-track-height) * -1.5);
+    border: var(--iceplayer-thumb-border);
+    box-sizing: border-box;
 }
-input[type=range]::-moz-range-track {
-    width: 100%;
-    height: calc(4px + 1 * (1em / 8));
+
+.ice-volume::-moz-range-track {
     cursor: pointer;
-    background: #000;
-    border-radius: calc((4px + 1 * (1em / 8)) / 2);
-    position: relative;
-    bottom: calc(50% - (4px + 1 * (1em / 8)) / 2);
+    height: var(--iceplayer-track-height);
+    background: var(--ice-player-primary-color);
+    border-radius: var(--iceplayer-track-border-radius);
 }
-input[type=range]::-moz-range-thumb {
-    box-shadow: -1px 1px 2px rgba(0, 0, 0, .25), 1px -1px 2px rgba(0, 0, 0, .25);
-    height: calc(8px + 2 * (1em / 8));
-    width: calc(8px + 2 * (1em / 8));
+.ice-volume::-moz-range-thumb {
     border: none;
+    cursor: pointer;
     border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: calc((4px + 1 * (1em / 8)) / -2);
+    width: var(--iceplayer-thumb-size);
+    height: var(--iceplayer-thumb-size);
+    background: var(--ice-player-primary-color);
+    border: var(--iceplayer-thumb-border);
+    box-sizing: border-box;
 }
-input[type=range]::-ms-track {
-    width: 100%;
-    height: calc(4px + 1 * (1em / 8));
-    cursor: pointer;
-    background: #000;
-    border-radius: calc((4px + 1 * (1em / 8)) / 2);
-    position: relative;
-    bottom: calc(50% - (4px + 1 * (1em / 8)) / 2);
-    border: none;
-    color: transparent;
+
+.ice-player.inline .ice-volume::-webkit-slider-thumb {
+    border-color: #fff;
 }
-input[type=range]::-ms-thumb {
-    box-shadow: -1px 1px 2px rgba(0, 0, 0, .25), 1px -1px 2px rgba(0, 0, 0, .25);
-    height: calc(8px + 2 * (1em / 8));
-    width: calc(8px + 2 * (1em / 8));
-    border-radius: 50%;
-    background: #fff;
-    cursor: pointer;
-    -webkit-appearance: none;
-    margin-top: calc((4px + 1 * (1em / 8)) / -2);
+.ice-player.inline .ice-volume::-moz-range-thumb {
+    border-color: #fff;
 }
 /* Input Range Stile (Volume) End  */

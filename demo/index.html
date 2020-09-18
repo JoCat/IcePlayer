@@ -33,7 +33,6 @@
     </header>
     <div class="container">
       <div id="ice-player"></div>
-      <div id="ice-player2"></div>
     </div>
     <link rel="stylesheet" href="../css/iceplayer.css">
     <script src="../js/iceplayer.js"></script>
@@ -41,12 +40,7 @@
       new IcePlayer('#ice-player', {
           server_address: 'http://noisefm.ru:8000/',
           stream_mount: 'play_256',
-          style: 'inline'
-      });
-      new IcePlayer('#ice-player2', {
-          server_address: 'http://ice1.dubstep.fm/',
-          stream_mount: '256mp3',
-          style: 'inline'
+          style: 'fixed'
       });
     </script>
   </body>
