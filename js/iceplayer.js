@@ -11,6 +11,7 @@ class IcePlayer {
     server_address = 'http://127.0.0.1:8000/' // Default address:port
     stream_mount = 'live' // Default mount
     style = 'fixed' // Player style (fixed or inline)
+    template = '<div class="ice-player-el"><i class="ice-play"></i><i class="ice-pause"></i><i class="ice-stop"></i><input class="ice-volume" type="range" min="0" max="100" value="50" step="1"><span class="ice-track"></span></div>'
     // Informer Params
     mounts_list = ['live', 'nonstop'] // Mount point list
     info_link = 'current_track.xsl' // Info file
@@ -34,14 +35,14 @@ class IcePlayer {
 
         // Setting transmitted parameters
         if (typeof init_params === 'object') {
-            const init_params_list = Object.keys(init_params).filter(param => ['server_address', 'stream_mount', 'style', 'mounts_list', 'info_link', 'time_update'].includes(param));
+            const init_params_list = Object.keys(init_params).filter(param => ['server_address', 'stream_mount', 'style', 'template', 'mounts_list', 'info_link', 'time_update'].includes(param));
             for (let parameter of init_params_list) {
                 this[parameter] = init_params[parameter];
             }
         }
 
         this.player_el.classList.add('ice-player', this.style);
-        this.set_content(this.player_el, '<div class="ice-player-el"><i class="ice-play"></i><i class="ice-pause"></i><i class="ice-stop"></i><input class="ice-volume" type="range" min="0" max="100" value="50" step="1"></i><span class="ice-track"></span>');
+        this.set_content(this.player_el, this.template);
 
         // Events
         this.get_element('.ice-play').addEventListener('click', () => {this.play()});
