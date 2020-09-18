@@ -101,6 +101,13 @@
     background: var(--ice-player-primary-color);
     border-radius: var(--iceplayer-track-border-radius);
 }
+.ice-volume::-moz-range-track {
+    cursor: pointer;
+    height: var(--iceplayer-track-height);
+    background: var(--ice-player-primary-color);
+    border-radius: var(--iceplayer-track-border-radius);
+}
+
 .ice-volume::-webkit-slider-thumb {
     cursor: pointer;
     border-radius: 50%;
@@ -111,13 +118,6 @@
     margin-top: calc(var(--iceplayer-track-height) * -1.5);
     border: var(--iceplayer-thumb-border);
     box-sizing: border-box;
-}
-
-.ice-volume::-moz-range-track {
-    cursor: pointer;
-    height: var(--iceplayer-track-height);
-    background: var(--ice-player-primary-color);
-    border-radius: var(--iceplayer-track-border-radius);
 }
 .ice-volume::-moz-range-thumb {
     border: none;
