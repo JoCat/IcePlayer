@@ -6,20 +6,26 @@
 
 Плеер для сайта интенет-радио на платформе Icecast2.
 
-## Установка
+## Установка скрипта
 Для начала вам нужно:
-1. Загрузить скрипт на сайт:
-> `iceplayer.min.js` или `iceplayer.js` из папки `js`
+1. Загрузить скрипт (`iceplayer.min.js` или `iceplayer.js` из папки `js`) на сайт и подключить его:
+```html
+<script type="text/javascript" src="iceplayer.min.js"></script>
+```
+Либо использовать jsDelivr CDN
+```html
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/iceplayer@3.0.0/js/iceplayer.min.js"></script>
+```
+или UNPKG CDN
+```html
+<script type="text/javascript" src="https://unpkg.com/iceplayer@3.0.0/js/iceplayer.min.js"></script>
+```
 2. Загрузить файл `current_track.xsl` из папки `to icecast2 web folder` в папку веб части сарвера Icecast.
 > По умолчанию `/usr/share/icecast2/web` для Debian (можно посмотреть в конфиге Icecast-a).
 
 Также если вы используете скрипт [IceInfo](https://github.com/JoCat/IceInfo), вы можете использовать уже загруженый файл `info.xsl`.
 
-## Подключение и настройка скрипта
-Подключить скрипт:
-```html
-<script type="text/javascript" src="js/iceplayer.min.js"></script>
-```
+## Настройка скрипта
 Вся настройка заключается в 2-х пунктах:
 1. Добавить после строк подключения плеера следующее:
 ```html

@@ -44,20 +44,24 @@
       </p>
       <h2>Установка скрипта</h2>
       <p>Для начала вам нужно:</p>
-      <p>1. Загрузить скрипт на сайт:</p>
+      <p>1. Загрузить скрипт (<code>iceplayer.min.js</code> или <code>iceplayer.js</code>code> из папки <code>js</code>code>) на сайт и подключить его:</p>
       <blockquote>
-        <code>iceplayer.min.js</code> или <code>iceplayer.js</code> из папки <code>js</code>
+        <code>&lt;script type=&quot;text/javascript&quot; src=&quot;iceplayer.min.js&quot;&gt;&lt;/script&gt;</code>
+      </blockquote>
+      <p>Либо использовать jsDelivr CDN</p>
+      <blockquote>
+        <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdn.jsdelivr.net/npm/iceplayer@3.0.0/js/iceplayer.min.js&quot;&gt;&lt;/script&gt;</code>
+      </blockquote>
+      <p>или UNPKG CDN</p>
+      <blockquote>
+        <code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/iceplayer@3.0.0/js/iceplayer.min.js&quot;&gt;&lt;/script&gt;</code>
       </blockquote>
       <p>2. Загрузить файл <code>current_track.xsl</code> из папки <code>to icecast2 web folder</code> в папку веб части сарвера Icecast.</p>
       <blockquote>
         По умолчанию <code>/usr/share/icecast2/web</code> для Debian (можно посмотреть в конфиге Icecast-a).
       </blockquote>
       <p>Также если вы используете скрипт <a target="_blank" href="https://github.com/JoCat/IceInfo">IceInfo</a>, вы можете использовать уже загруженый файл <code>info.xsl</code>.</p>
-      <h2>Подключение и настройка скрипта</h2>
-      <p>Подключить скрипт:</p>
-      <blockquote>
-        <code>&lt;script type=&quot;text/javascript&quot; src=&quot;js/iceplayer.min.js&quot;&gt;&lt;/script&gt;</code>
-      </blockquote>
+      <h2>Настройка скрипта</h2>
       <p>Вся настройка заключается в 2-х пунктах:</p>
       <p>1. Добавить после строк подключения плеера следующее:</p>
       <blockquote>
