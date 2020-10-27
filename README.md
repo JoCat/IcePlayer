@@ -10,7 +10,7 @@
 Для начала вам нужно:
 1. Загрузить скрипт (`iceplayer.min.js` или `iceplayer.js` из папки `js`) на сайт и подключить его:
 ```html
-<script type="text/javascript" src="iceplayer.min.js"></script>
+<script type="text/javascript" src="/path/to/iceplayer.min.js"></script>
 ```
 Либо использовать jsDelivr CDN
 ```html
@@ -24,6 +24,11 @@
 > По умолчанию `/usr/share/icecast2/web` для Debian (можно посмотреть в конфиге Icecast-a).
 
 Также если вы используете скрипт [IceInfo](https://github.com/JoCat/IceInfo), вы можете использовать уже загруженый файл `info.xsl`.
+
+3. Загрузить остальные файлы (css/fonts) и подключить css стили (`iceplayer.css` или `iceplayer.min.css`)
+```html
+<link rel="stylesheet" href="/path/to/iceplayer.min.css">
+```
 
 ## Настройка скрипта
 Вся настройка заключается в 2-х пунктах:
